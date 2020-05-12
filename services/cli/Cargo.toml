@@ -1,0 +1,16 @@
+[package]
+name = "git-ventures-cli"
+version = "0.1.0"
+authors = ["Ryan <ryan@emergent.financial>"]
+edition = "2018"
+
+[[bin]]
+name = "git-ventures"
+path = "src/main.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = "2.33.0"
+config = "0.10.1"
+dialoguer = "0.6.2"
