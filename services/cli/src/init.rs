@@ -58,9 +58,9 @@ impl Init {
             let filing_type: String = Input::with_theme(&ColorfulTheme::default())
                 .with_prompt("Input Security Filing Type (e.g. Reg CF)")
                 .interact()?;
-            self.config.filing_type = Some(filing_type.to_ascii_uppercase());
+            self.config.securities_filing_type = Some(filing_type.to_ascii_uppercase());
         } else {
-            self.config.filing_type = Some(items[filing].to_string().to_ascii_uppercase());
+            self.config.securities_filing_type = Some(items[filing].to_string().to_ascii_uppercase());
         }
 
         Ok(self.clone())
@@ -68,15 +68,15 @@ impl Init {
 
     
     pub fn legal_entity(&mut self) -> Result<Self, Error> {
-        
+        unimplemented!()
     }
     
     pub fn open_source(&mut self) -> Result<Self, Error> {
-        
+        unimplemented!()
     }
     
     pub fn product_category(&mut self) -> Result<Self, Error> {
-        
+        unimplemented!()
     }
 
     
