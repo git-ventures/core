@@ -27,8 +27,8 @@ fn main() -> Result<(), Error> {
         )
         .get_matches();
 
-    if let Some(args) = cli.subcommand_matches(Command::Init.to_string().as_str()) {
-        let init = Init::new().description()?.filing_exemption()?;
+    if let Some(_args) = cli.subcommand_matches(Command::Init.to_string().as_str()) {
+        let init = Init::new().description()?.securities_filing_type()?;
 
         println!("{:?}", init);
     }
