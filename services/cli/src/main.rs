@@ -1,7 +1,10 @@
+pub mod init;
 pub mod subcommands;
 
+use crate::init::Init;
 use crate::subcommands::*;
-use clap::{App, SubCommand, crate_authors, crate_version};
+use anyhow::Error;
+use clap::{crate_authors, crate_version, App, SubCommand};
 
 // TODO: Pull from Cargo.toml
 const TITLE: &str = "Git Ventures CLI";
@@ -13,7 +16,7 @@ turn your git repository into your next investable
 start-up.
 ";
 
-fn main() {
+fn main() -> Result<(), Error> {
     let cli = App::new(TITLE)
         .version(crate_version!())
         .author(crate_authors!())
@@ -25,6 +28,10 @@ fn main() {
         .get_matches();
 
     if let Some(args) = cli.subcommand_matches(Command::Init.to_string().as_str()) {
-        println!("Args: {:?}", args);
+        let init = Init::new().description()?.filing_exemption()?;
+
+        println!("{:?}", init);
     }
+
+    Ok(())
 }
