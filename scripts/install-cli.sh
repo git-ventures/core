@@ -11,25 +11,15 @@ else
         | jq -r '.assets[].browser_download_url' > /tmp/gv.json
 
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-            cat /tmp/gv.json \
-                | grep amd64  \
-                | wget -i -
+            cat /tmp/gv.json | grep amd64 | wget -i -
     elif [[ "$OSTYPE" == "darwin"* ]]; then
-            cat /tmp/gv.json \
-                | grep darwin  \
-                | wget -i -
+            cat /tmp/gv.json | grep darwin | wget -i -
     elif [[ "$OSTYPE" == "cygwin" ]]; then
-            cat /tmp/gv.json \
-                | grep exe \
-                | wget -i -
+            cat /tmp/gv.json | grep exe | wget -i -
     elif [[ "$OSTYPE" == "msys" ]]; then
-            cat /tmp/gv.json \
-                | grep exe \
-                | wget -i -
+            cat /tmp/gv.json | grep exe | wget -i -
     elif [[ "$OSTYPE" == "win32" ]]; then
-            cat /tmp/gv.json \
-                | grep exe \
-                | wget -i -
+            cat /tmp/gv.json | grep exe | wget -i -
     elif [[ "$OSTYPE" == "freebsd"* ]]; then
             # NOT TESTED;
             echo "freebsd not supported"
