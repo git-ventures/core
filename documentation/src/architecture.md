@@ -1,0 +1,81 @@
+# Architecture Overview
+
+## Basic Flow
+
+Optionally, 
+
+
+```plantuml
+@startuml
+skinparam monochrome true
+
+participant "Local Repository" as Contributor
+participant "Remote Repository" as RemoteRepository
+
+activate Contributor
+Contributor -> Contributor : Commit Work
+Contributor -> RemoteRepository : Push Commit
+activate RemoteRepository
+RemoteRepository -> RemoteRepository : Run `git ventures analyze` on Merge
+@enduml
+
+```
+
+## Git Ventures CLI Class Diagrams
+
+### `> git ventures analyze`
+
+The `git ventures analyze` command performs the analysis on the target repository from the initial commit to the `HEAD` or target commit, if providing `-c <commit oid>` flag.
+
+
+```plantuml
+@startuml
+
+skinparam monochrome true
+skinparam linetype ortho
+
+class Analyze {
+    .. Properties ..
+    +repo: git2::Repository
+    +stats: crate::Stats
+    .. Methods ..
+    +fn new() -> Result<Analyze, Error>
+    +fn commit(&mut self, oid: Option<String>) -> Result<(), Error>
+}
+
+class Stats {
+    .. Properties ..
+    +contributors : HashMap<Email, Contributor>
+    +commits: HashMap<Oid, CommitStats>
+    .. Methods ..
+    +fn new() -> Self
+    +fn process_diff(&mut self, repo: &Repository, commit: &Commit<'_>, diff: Diff) -> Result<(), Error>
+    +fn process_commit(&mut self, repo: &Repository, commit: Commit<'_>) -> Result<(), Error>
+    +fn insert_contributor_from_commit(
+    +fn get_contributor_by_email(&self, email: &str) -> Option<&Contributor>
+    +fn get_contributor_score(&self, email: &str) -> f64
+    +fn update_contributor_score(&mut self, email: &str, points: f64) -> f64
+    +fn calculate_rewards(&mut self) -> Result<(), Error>
+    +fn get_commit_weight(&self, oid: &Oid) -> f64
+}
+
+
+class git2::Repository {
+    .. https://docs.rs/git2/0.13.6/git2/struct.Repository.html ..
+}
+
+class git2::Commit {
+    .. https://docs.rs/git2/0.13.6/git2/struct.Commit.html ..
+}
+
+class git2::Diff {
+    .. https://docs.rs/git2/0.13.6/git2/struct.Diff.html ..
+}
+
+Analyze --|> git2::Repository
+Analyze --|> Stats
+Stats --> git2::Repository : Borrows `repo` from `Analyze`
+Stats --> git2::Commit
+Stats --> git2::Diff
+@enduml
+```

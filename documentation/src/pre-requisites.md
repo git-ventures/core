@@ -4,7 +4,7 @@ There are a few conditions that must apply before using Git Ventures. When initi
 
 ## Legal Requirements
 
-Currently, Git Ventures is only available for U.S. Delaware corporations. In the future, the financing documents used will provide provisions for other U.S. states. If you're a lawyer and would like to contribute
+Currently, Git Ventures is only available for U.S. Delaware corporations. In the future, the financing documents used will provide provisions for other U.S. states. If you're a lawyer and would like to contribute, feel free to [open an issue](https://github.com/git-ventures/tahoma/issues/new).
 
 All git repositories using Git Ventures must be property of a legal entity which may legally accept funding from investors. Git Ventures uses a fork of the <a href="https://github.com/CooleyLLP/seriesseed">CooleyLLP Series Seed</a> Equity and Notes documents.
 

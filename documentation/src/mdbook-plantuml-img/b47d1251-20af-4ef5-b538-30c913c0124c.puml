@@ -1,0 +1,13 @@
+@startuml
+skinparam monochrome true
+
+participant "Local Repository" as Contributor
+participant "Remote Repository" as RemoteRepository
+
+activate Contributor
+Contributor -> Contributor : Commit Work
+Contributor -> RemoteRepository : Push Commit
+activate RemoteRepository
+RemoteRepository -> RemoteRepository : Run `git ventures analyze` on Merge
+@enduml
+

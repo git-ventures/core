@@ -1,0 +1,7 @@
+<svg width="500" height="500" style="margin: -50px; margin-top: -150px">
+    <path transform="scale(3)" id="stem1" d="M 50 130 A50 50 0 0 1 70 90" stroke-width="4" stroke="green" fill="transparent" />
+    <path transform="scale(3)" id="stem2" d="M 54 110 A50 50 0 0 0 40 80" stroke-width="4" stroke="green" fill="transparent" />
+    <circle transform="scale(3)" id="leaf1" cx="49" cy="135" r="5" stroke="green" stroke-width="4" fill="transparent" />
+    <circle transform="scale(3)" id="leaf2" cx="37" cy="78" r="5" stroke="green" stroke-width="4" fill="transparent" />
+    <circle transform="scale(3)" id="leaf3" cx="72" cy="87" r="5" stroke="green" stroke-width="4" fill="transparent" />
+</svg>

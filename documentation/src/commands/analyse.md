@@ -1,4 +1,4 @@
-# > git ventures analyse -h
+# `> git ventures analyse -h`
 
 ```
 Analyse a repository or individual commit
