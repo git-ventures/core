@@ -13,13 +13,13 @@ jobs:
           default: true
           override: true
       - name: Build
-        run: cd services/cli/ && cargo build --all --release && cd ../../target/release && ls -a
+        run: sh ./scripts/run-release.sh amd64
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            services/cli/target/release/git-ventures-amd64
+            target/release/git-ventures-amd64
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   build-win:
@@ -34,13 +34,13 @@ jobs:
           default: true
           override: true
       - name: Build
-        run: cd ./services/cli/ && cargo build --all --release
+        run: sh ./scripts/run-release.sh win
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            services/cli/target/release/git-ventures.exe
+            target/release/git-ventures.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   build-mac:
@@ -56,12 +56,12 @@ jobs:
           default: true
           override: true
       - name: Build
-        run: cd ./services/cli/ && cargo build --all --release && strip ./target/release/git-ventures && mv ./target/release/git-ventures ./target/release/git-ventures-darwin
+        run: sh ./scripts/run-release.sh darwin
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            services/cli/target/release/git-ventures-darwin
+            target/release/git-ventures-darwin
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
