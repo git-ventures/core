@@ -60,24 +60,22 @@ impl Init {
                 .interact()?;
             self.config.securities_filing_type = Some(filing_type.to_ascii_uppercase());
         } else {
-            self.config.securities_filing_type = Some(items[filing].to_string().to_ascii_uppercase());
+            self.config.securities_filing_type =
+                Some(items[filing].to_string().to_ascii_uppercase());
         }
 
         Ok(self.clone())
     }
 
-    
     pub fn legal_entity(&mut self) -> Result<Self, Error> {
         unimplemented!()
     }
-    
+
     pub fn open_source(&mut self) -> Result<Self, Error> {
         unimplemented!()
     }
-    
+
     pub fn product_category(&mut self) -> Result<Self, Error> {
         unimplemented!()
     }
-
-    
 }
